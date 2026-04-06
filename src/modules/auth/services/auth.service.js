@@ -76,31 +76,32 @@ export const registerUser = async (userData) => {
   ];
 
   // 6. generate email verification token
-  const { token: verificationToken, hashed: hashedVerificationToken } =
-    generateHashedToken();
+  // const { token: verificationToken, hashed: hashedVerificationToken } =
+  //   generateHashedToken();
 
   // 7. create & save user in DB
   const user = await User.create({
     _id: userId,
     ...userData,
     roles,
+    emailVerified: true,
     refreshTokens,
-    emailVerificationToken: {
-      token: hashedVerificationToken,
-      expireAt: getExpiryDate(env.AUTH.EMAIL_VERIFICATION_EXPIRE),
-    },
+    // emailVerificationToken: {
+    //   token: hashedVerificationToken,
+    //   expireAt: getExpiryDate(env.AUTH.EMAIL_VERIFICATION_EXPIRE),
+    // },
   });
 
   // 8. create customer profile
   await Customer.create({ userId: user._id });
 
   // 9. send verification email
-  const VERIFY_URL = `${env.CLIENT_URL}/verify-email?token=${verificationToken}`;
-  await sendEmail({
-    to: user.email,
-    subject: MESSAGES.EMAIL.SUBJECTS.VERIFICATION,
-    html: verificationEmailHtml(VERIFY_URL),
-  });
+  // const VERIFY_URL = `${env.CLIENT_URL}/verify-email?token=${verificationToken}`;
+  // await sendEmail({
+  //   to: user.email,
+  //   subject: MESSAGES.EMAIL.SUBJECTS.VERIFICATION,
+  //   html: verificationEmailHtml(VERIFY_URL),
+  // });
 
   // 10. return safe user data + tokens
   return {

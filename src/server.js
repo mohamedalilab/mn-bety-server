@@ -2,7 +2,7 @@ import { env } from "./config/env.js";
 import connectDB, { disconnectDB } from "./DB/connection.js";
 import { connectRedis, disconnectRedis } from "./config/redis.js";
 import createApp from "./app.js";
-// import { initSocket } from "./config/socket.js";
+import { initSocket } from "./config/socket.js";
 import { verifyEmailTransporter } from "./services/email/email.service.js";
 
 // server instance
@@ -78,7 +78,7 @@ const startServer = async () => {
   // 2. create app - registers middleware and routes
   await connectRedis();
   // 3. verify email transporter
-  await verifyEmailTransporter();
+  // await verifyEmailTransporter();
   // 4. Create app
   const app = createApp();
   // 5. Start HTTP server
@@ -87,7 +87,7 @@ const startServer = async () => {
     console.log(server.address());
   });
 
-  // initSocket(server);
+  initSocket(server);
 };
 
 export default startServer;
