@@ -76,7 +76,7 @@ const startServer = async () => {
   // 1. connect DB first - routes need DB to work
   await connectDB();
   // 2. create app - registers middleware and routes
-  await connectRedis();
+  // await connectRedis();
   // 3. verify email transporter
   // await verifyEmailTransporter();
   // 4. Create app
