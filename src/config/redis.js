@@ -3,7 +3,7 @@ import { env } from "./env.js";
 
 // Redis client instance
 const redisClient = createClient({
-  url: env.REDIS_URL || "redis://localhost:6379",
+  url: env.REDIS_URL,
   socket: {
     // retry with increasing delay
     // returning an Error stops retrying entirely
