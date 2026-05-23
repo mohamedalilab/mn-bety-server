@@ -2,7 +2,7 @@ import { env } from "./config/env.js";
 import connectDB, { disconnectDB } from "./DB/connection.js";
 import { connectRedis, disconnectRedis } from "./config/redis.js";
 import createApp from "./app.js";
-import { initSocket } from "./config/socket.js";
+// import { initSocket } from "./config/socket.js";
 import { verifyEmailTransporter } from "./services/email/email.service.js";
 
 // server instance
