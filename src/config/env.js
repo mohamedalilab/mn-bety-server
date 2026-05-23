@@ -14,7 +14,7 @@ export const env = {
 
   // Database
   DATABASE_URI: process.env.DATABASE_URI,
-  REDIS_URL: process.env.REDIS_URL,
+  REDIS_URL: process.env.REDIS_URL || "redis://localhost:6379",
   REDIS_RETRIES: parseInt(process.env.REDIS_RETRIES) || 3,
   REDIS_DELAY: parseInt(process.env.REDIS_DELAY) || 1000,
 

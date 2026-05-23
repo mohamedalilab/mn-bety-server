@@ -20,8 +20,9 @@ export const initializeEmailTransporter = () => {
     secure: env.EMAIL.SECURE === "true",
     tls: {
       rejectUnauthorized: env.EMAIL.TLS_REJECT_UNAUTHORIZED,
-      family: 4 
     },
+    socketTimeout: 10000,
+    socketOptions: { family: 4 },
     auth: {
       user: env.EMAIL.USER,
       pass: env.EMAIL.PASSWORD,
@@ -63,7 +64,7 @@ export const sendEmail = async ({ to, subject, html }) => {
     });
   } catch (error) {
     // 2. Throw internal error if sending fails
-    console.log(error)
+    console.log(error);
     throw createInternalError(MESSAGES.ERROR.FAILED_TO_SEND_EMAIL);
   }
 };
